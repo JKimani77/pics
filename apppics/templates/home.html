@@ -1,1 +1,73 @@
-<h1>||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||</h1>
+{% extends 'base.html' %}
+
+{% block styles %}
+{% load cloudinary %}
+<style>
+    .img-page-show:hover {
+        opacity: 0.5;
+    }
+
+    @media only screen and (min-width: 1024px) {
+        .img-zoom {
+            -webkit-transition: 2s;
+            transition: 2s;
+        }
+
+        .img-zoom:hover {
+            -ms-transform: scale(1.2);
+            -webkit-transition: 2s;
+            transition: 2s;
+            /* IE 9 */
+            -webkit-transform: scale(1.2);
+            -webkit-transition: 2s;
+            transition: 2s;
+            /* Safari 3-8 */
+            transform: scale(1.2);
+            -webkit-transition: 2s;
+            transition: 2s;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<hr class='container' style="height:1px;border:none;color:#333;background-color:#333;" />
+<div class="container">
+    <div class="row">
+        {% for image in images %}
+        <div>
+            <img src="{{image.image.url}}" class="img-responsive img-page-show"
+                style="max-width: 500px; max-height: 400px; padding: 13px;border-radius: 30px;" data-toggle="modal"
+                data-target="#modaler{{image.id}}">
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="modaler{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="modalerTitle"
+            aria-hidden="true" style="opacity: 0.9; background-color: #60635A;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body" style="opacity: 0.9; background-color: white;">
+                        <img src="{{image.image.url}}" class="img-responsive img-zoom"
+                            style="max-width: 450px; max-height: 450px;" data-toggle="modal" data-target="#modaler">
+                        <br>
+                        <div class="text-center" style="font-family: 'Raleway';">
+                            Name: {{image.image_name}} <br>
+                            Description: {{image.image_description}} <br>
+                            Published: {{image.created_at}} <br>
+                            Location: {{image.location}} <br>
+                            Category: {{image.category}} <br>
+                            <button type="button" class="btn btn-outline-secondary btn_toggle"
+                                onclick="clipCopy(`{{image.image.url}}`)" data-dismiss="modal">Copy to
+                                Clipboard</button>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>There are no Pinned Images</p>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}
