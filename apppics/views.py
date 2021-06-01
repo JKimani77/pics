@@ -15,8 +15,11 @@ from .models import *
 # need
 
 # Create your views here.
-def home(request):
-    #projects = Project.objects.all()
+def index(request):
+    images = Image.get_images()
+    location = Location.objects.all()
+    return render(request, 'home.html' ,{"images":images})
 
-    return render(request, 'home.html')
+# Create your views here.
+
 
