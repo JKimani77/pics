@@ -15,11 +15,16 @@ from .models import *
 # need
 
 # Create your views here.
-def index(request):
+def home(request):
     images = Image.get_images()
     location = Location.objects.all()
     return render(request, 'home.html' ,{"images":images})
 
+def search():
+    pass
+def locale():
+    pass
+#
 # Create your views here.
 
 
