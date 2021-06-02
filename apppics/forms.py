@@ -5,4 +5,4 @@ class FormImage(forms.ModelForm):
     class Meta:
         model = Image
         exclude = []
-        fields = ('image_name', 'image_desciption', 'image', 'category', 'location')
+        fields = ('image_name', 'image_description', 'image')

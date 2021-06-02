@@ -27,18 +27,7 @@ def search():
 def locale():
     pass
 
-def post(request):
-    '''
-    view function to post images
-    '''
-    if request.method=='POST':
-        form = FormImage(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.save(commit=False)
-            return redirect(home)
-    else:
-        form = FormImage()
-    return render(request, 'newpic.html',{"form":form})
+
 
 
 

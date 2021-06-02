@@ -52,8 +52,8 @@ class Image(models.Model):
     image_name = models.CharField(max_length=30)
     image_description = models.CharField(max_length=300)
     image = CloudinaryField(blank = True, null = True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True)
+    #category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True)
+    #location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=True)
 
     def save_image(self):
         self.save()
@@ -86,3 +86,5 @@ class Image(models.Model):
         images_loc = cls.objects.filter(location__id=loc)
         return images_loc
 
+
+#

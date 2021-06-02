@@ -31,3 +31,4 @@ class LocationTestClass(TestCase):
         self.any_location.save_location()
         any_locations = Location.objects.all()
         self.assertTrue(len(any_locations)>0)
+#

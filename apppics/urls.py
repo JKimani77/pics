@@ -9,7 +9,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('search/', views.search, name='search'),
     path('locations/<str:region>', views.locale, name='location'),
-    path('post/image/', views.post, name = 'uploadimage'),
+    
 ]
 
 
