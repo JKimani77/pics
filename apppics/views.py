@@ -1,20 +1,14 @@
 from django.shortcuts import render
-from django.http  import Http404,HttpResponseRedirect, request
-#from django.contrib.auth.decorators import login_required
-from django.shortcuts import render,redirect,HttpResponse
-from .forms import FormImage
-from django.contrib.auth.models import User
-from django.contrib.auth import login,logout,authenticate
 
-# Create your views he
+from django.shortcuts import render,HttpResponse
+
+from django.template import loader
+
+
 from .models import *
-#from rest_framework.response import Response
-#from rest_framework.views import APIView
-#from .serializers import ProjectSerializer,ProfileSerialiser
-#from rest_framework.views import APIView
-# need
 
-# Create your views here.
+
+
 def home(request):
     images = Image.get_images()
     
@@ -22,15 +16,27 @@ def home(request):
 
 
 
-def search():
+def search(request):
+    '''View function to search by category'''
+    template = loader.get_template('search.html')
     if 'image' in request.GET and request.GET['image']:
         search_category = request.GET['image']
-        searched = Image.search_by_tag(search_category)
+        searched_images = Image.search_images(search_category)
         message = f'{search_category}'
 
-    return render(request, search.html, {"searched":searched, "message":message})
-    
-    
+        context = {
+            'message': message,
+            'images': searched_images,
+        }
+        return HttpResponse(template.render(context,request))
+
+    else:
+        message = 'The category does not exist!!'
+
+        context = {
+            'message': message,
+        }
+        return render(request, 'search.html', {'message': message})
 def locale():
     pass
 
