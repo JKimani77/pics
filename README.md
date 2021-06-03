@@ -10,7 +10,7 @@ This a web application built using Python, Django and Postgresql.The application
 Joshua Kimani
 
 ## Link to site
-http://peaks.herokuapp.com/
+http://peakcs.herokuapp.com/
 
 
 
