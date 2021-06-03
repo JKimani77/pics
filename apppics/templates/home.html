@@ -4,6 +4,92 @@
 {% block styles %}
 {% load cloudinary %}
 <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+<style>
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position:sticky; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  -webkit-animation-name: fadeIn; /* Fade in the background */
+  -webkit-animation-duration: 0.4s;
+  animation-name: fadeIn;
+  animation-duration: 5.4s
+}
+
+/* Modal Content */
+.modal-content {
+  position:fixed;
+  bottom: 0;
+  background-color: #f5f5f5;
+  width: 100%;
+  -webkit-animation-name:slideIn;
+  -webkit-animation-duration: 2.4s;
+  animation-name: slideIn;
+  animation-duration: 2.4s
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: left;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #9c6703;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Add Animation */
+/**/
+@-webkit-keyframes slideIn {
+  from {top: -300px; opacity: 0} 
+  to {top: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+
+
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+</style>
+
 {% endblock %}
 
 
@@ -17,26 +103,80 @@
 
 
 {% block content %}
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            {% for c in images %}
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <span class="close">&times;</span>
+              <h2>{{c.image_title}}</h2>
+            </div>
+            <div class="modal-body">
+                <img src="{{c.image.url}}" class="img-responsive img-page-show"
+                style="max-width: 500px; max-height: 400px; padding: 13px;border-radius: 12px;" data-toggle="modal"
+                data-target="#modaler{{c.id}}">
+            </div>
+            <div class="modal-footer">
+              <h3>{{c.description}}</h3>
+            </div>
+          </div>
+        
+        </div>
+        
+        
+        {%endfor%}
+            
+        
+        </div>
+
+                  <!--end of modal-->
+
+
+
+
 <hr class='container' style="height:1px;border:none;color:#333;background-color:#333;" />
 <div class="container">
-    <div class="row">
+    <div class="col-md-6">
         {% for image in images %}
-        <div>
-            <img src="{{image.image.url}}" class="img-responsive img-page-show"
-                style="max-width: 500px; max-height: 400px; padding: 13px;border-radius: 30px;" data-toggle="modal"
+        <div class="card" style="float:inherit;">
+            <div class="card-header">
+                <h1 style="text-align: center;font-size: 30px;color: black;" >{{image.image_name}}</h1>
+            </div>
+            <div class="card-body">
+                <img src="{{image.image.url}}" class="img-responsive img-page-show"
+                style="max-width: 500px; max-height: 400px; padding: 13px;border-radius: 12px;" data-toggle="modal"
                 data-target="#modaler{{image.id}}">
+                <br>
+                <h1 style="text-align: center; color: black;font-size: 30px;" >{{image.image_description}}</h1>
+            </div>
+            <div class="card-footer">
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn">View</button>
+            </div>
+
         </div>
+
+        <br>
+
       
-        {% empty %}
-        <p>There are no Pinned Images</p>
+      
         {% endfor %}
     </div>
-</div>
-</div>
+
+    
+
+
+            
+
 {% endblock %}
 
+
+
 {% block scripts %}
-<script>
+<!--Copy/Paste script-->
+<script> 
     function clipCopy(value) {
         function handler(event) {
             event.clipboardData.setData('text/plain', value);
@@ -47,4 +187,35 @@
         document.execCommand('copy');
     }
 </script>
+
+
+<!--Modal click script-->
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+    </script>
+
 {% endblock %}

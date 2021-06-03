@@ -20,13 +20,13 @@ def search(request):
     '''View function to search by category'''
     template = loader.get_template('search.html')
     if 'image' in request.GET and request.GET['image']:
-        search_category = request.GET['image']
-        searched_images = Image.search_images(search_category)
-        message = f'{search_category}'
+        _category = request.GET['image']
+        searched = Image.search_images(_category)
+        message = f'{_category}'
 
         context = {
             'message': message,
-            'images': searched_images,
+            'images': searched,
         }
         return HttpResponse(template.render(context,request))
 

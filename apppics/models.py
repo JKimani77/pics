@@ -52,8 +52,8 @@ class Image(models.Model):
     image_name = models.CharField(max_length=30)
     image_description = models.CharField(max_length=300)
     image = CloudinaryField(blank = True, null = True)
-    #category = models.OneToOneField(Category, on_delete=models.CASCADE)
-    #location = models.OneToOneField(Location, on_delete=models.CASCADE)
+    #category = models.OneToOneField(Category, on_delete=models.CASCADE, default=9)
+    #location = models.OneToOneField(Location, on_delete=models.CASCADE, default=4)
 
     def save_image(self):
         self.save()
@@ -63,7 +63,7 @@ class Image(models.Model):
 
     @classmethod
     def search_by_tag(cls, search_word):
-        images = cls.objects.filter(category__name__icontains=search_word)
+        images = cls.objects.filter(category__category__icontains=search_word)
         return images
 #
 #

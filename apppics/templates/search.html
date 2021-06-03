@@ -4,5 +4,29 @@
 </div>
 {% include 'home.html' %}
 
-{% if i in searched  %}
+{% for i in searched  %}
+
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h1>{i.image_name}</h1>
+            </div>
+            <div class="card-body">
+                <img src="{{c.image.url}}" class="img-responsive img-page-show"
+                style="max-width: 500px; max-height: 400px; padding: 13px;border-radius: 12px;" data-toggle="modal"
+                data-target="#modaler{{c.id}}">
+            </div>
+            <div class="card-footer">
+                <h3>{{i.image_description}}</h3>
+              </div>
+            
+            
+        </div>
+        {% empty %}
+        <p style="color: antiquewhite;font-size: 40px;text-align: center;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+            There are no Images uploaded with that category name, try something else.</p>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
