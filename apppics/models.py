@@ -19,7 +19,7 @@ class Category(models.Model):
 
     
 class Meta:
-    ordering = ['name']
+    ordering = ['category']
 
 
 
@@ -43,7 +43,7 @@ class Location(models.Model):
         self.save()
 
     class Meta:
-        ordering = ['image_location']
+        ordering = ['location']
 
 
 
