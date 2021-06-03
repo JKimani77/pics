@@ -20,6 +20,8 @@ class ImageTestClass(TestCase):
         images = self.any_image.search_by_tag('FOOD')
         self.assertTrue(len(images)>0)
 
+
+#
 class LocationTestClass(TestCase):
     '''
     test case for location model

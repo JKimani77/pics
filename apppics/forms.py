@@ -6,3 +6,6 @@ class FormImage(forms.ModelForm):
         model = Image
         exclude = []
         fields = ('image_name', 'image_description', 'image')
+
+
+#
