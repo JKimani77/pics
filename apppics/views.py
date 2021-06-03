@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http  import Http404,HttpResponseRedirect
+from django.http  import Http404,HttpResponseRedirect, request
 #from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect,HttpResponse
 from .forms import FormImage
@@ -23,7 +23,14 @@ def home(request):
 
 
 def search():
-    pass
+    if 'image' in request.GET and request.GET['image']:
+        search_category = request.GET['image']
+        searched = Image.search_by_tag(search_category)
+        message = f'{search_category}'
+
+    return render(request, search.html, {"searched":searched, "message":message})
+    
+    
 def locale():
     pass
 
