@@ -52,8 +52,8 @@ class Image(models.Model):
     image_name = models.CharField(max_length=30)
     image_description = models.CharField(max_length=300)
     image = CloudinaryField(blank = True, null = True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    #category = models.OneToOneField(Category, on_delete=models.CASCADE)
+    #location = models.OneToOneField(Location, on_delete=models.CASCADE)
 
     def save_image(self):
         self.save()
