@@ -24,6 +24,7 @@
 }
 
 /* Modal Content */
+
 .modal-content {
   position:fixed;
   bottom: 0;
@@ -88,6 +89,14 @@
   from {opacity: 0} 
   to {opacity: 1}
 }
+
+/*image style*/
+.img-responsive {
+  width: 100%;
+  height: auto;
+
+}
+
 </style>
 
 {% endblock %}
@@ -145,7 +154,7 @@
                 <h1 style="text-align: center;font-size: 30px;color: rgb(247, 247, 247);" >{{image.image_name}}</h1>
             </div>
             <div class="card-body">
-                <img src="{{image.image.url}}" class="img-responsive img-page-show"
+                <img src="{{image.image.url}}" class="img-responsive"
                 style="max-width: 500px; max-height: 400px; padding: 13px;border-radius: 12px;" data-toggle="modal"
                 data-target="#modaler{{image.id}}">
                 <br>
