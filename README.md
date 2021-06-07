@@ -12,6 +12,10 @@ Joshua Kimani
 ## Link to site
 http://peakcs.herokuapp.com/
 
+## Admin Credentials
+username - joshkimani
+password - Ivonne1236987
+
 
 
 # Installation
